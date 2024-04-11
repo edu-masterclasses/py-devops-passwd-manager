@@ -19,14 +19,14 @@ def singup_v1():
   c = conn.cursor()
   c.execute('''
     CREATE TABLE IF NOT EXISTS USER_PLAIN(
-      USERNAME TEXT PROMARY KEY NOT NULL, 
-      PASSWORD TEXT NOT NULL,
+      USERNAME TEXT PRIMARY KEY NOT NULL, 
+      PASSWORD TEXT NOT NULL
     );
     ''')
-  conn.commit();
+  conn.commit()
   try:
     c.execute("INSERT INTO USER_PLAIN(USERNAME, PASSWORD)"
-    "VALUES('{0}', '{1}')".format(request.form['username'], request['password']))
+    "VALUES('{0}', '{1}')".format(request.form['username'], request.form['password']))
     conn.commit();
   except sqlite3.IntegrityError:
     return "username has been registrated"
