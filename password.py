@@ -24,9 +24,10 @@ def singup_v1():
     );
     ''')
   conn.commit()
+  print('---------------------')
   try:
     c.execute("INSERT INTO USER_PLAIN(USERNAME, PASSWORD)"
-    "VALUES('{0}', '{1}')".format(request.form['username'], request.form['password']))
+      "VALUES('{0}', '{1}')".format(request.form['username'], request.form['password']))
     conn.commit();
   except sqlite3.IntegrityError:
     return "username has been registrated"
@@ -39,7 +40,7 @@ def verify_plain(username, password):
   c = conn.cursor()
   query = "SELECT PASSWORD FROM USER_PLAIN WHERE USERNAME = '{0}'".format(username)
   c.execute(query)
-  record = c.fetchone()
+  records = c.fetchone()
   conn.close();
   if not records:
     return False
