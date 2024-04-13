@@ -1,6 +1,12 @@
 # py-devops-passwd-manager
 
 
+## Start server
+
+```
+$ python3 password.py
+```
+
 ## Test
 
 ```
